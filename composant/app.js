@@ -33,7 +33,7 @@ function getCredentialsFromForm() {
 }
 
 async function getJWT() {
-  const signInEndpoint = 'https://((DOMAIN))/api/auth/signinn';
+  const signInEndpoint = 'https://adam-jerusalem.nd.edu/api/auth/signin';
   const credentials = getCredentialsFromForm();
   const base64Credentials = btoa(`${credentials.username}:${credentials.password}`);
   const requestOptions = {

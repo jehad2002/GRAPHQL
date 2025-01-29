@@ -6,7 +6,7 @@ export async function loadUserProfile() {
 
     if (userProfileElement && jwt) {
       try {
-        const response = await fetch('https://((DOMAIN))/api/graphql-engine/v1/graphql', {
+        const response = await fetch('https://adam-jerusalem.nd.edu/api/graphql-engine/v1/graphql', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${jwt}`,
@@ -48,7 +48,7 @@ export async function loadUserProfile() {
 export async function loadXP() {
   if (jwt) {
     try {
-      const response = await fetch('https://((DOMAIN))/api/graphql-engine/v1/graphql', {
+      const response = await fetch('https://adam-jerusalem.nd.edu/api/graphql-engine/v1/graphql', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${jwt}`,
@@ -84,6 +84,7 @@ export async function loadXP() {
       }
 
       const { data } = await response.json();
+      console.log("--- data:", data);
       const totalXpAmount = data.xpTotal.aggregate.sum.amount;
 
       const totalXpAmountMB = totalXpAmount >= 1000 ? totalXpAmount / 1000 : totalXpAmount;
@@ -107,7 +108,7 @@ export async function loadLevel() {
   
     if (jwt) {
       try {
-        const response = await fetch('https://((DOMAIN))/api/graphql-engine/v1/graphql', {
+        const response = await fetch('https://adam-jerusalem.nd.edu/api/graphql-engine/v1/graphql', {
           method: 'POST',
           headers: {
             'Authorization': `Bearer ${jwt}`,
@@ -237,7 +238,7 @@ function barXpProjet(xpTransactions) {
 export async function loadXPAndDisplayChart() {
   if (jwt) {
     try {
-      const response = await fetch('https://((DOMAIN))/api/graphql-engine/v1/graphql', {
+      const response = await fetch('https://adam-jerusalem.nd.edu/api/graphql-engine/v1/graphql', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${jwt}`,
@@ -290,7 +291,7 @@ export async function loadXPAndDisplayChart() {
 /****************************************************************************************************************************/
 async function fetchSkillTransactions(jwt) {
   try {
-    const response = await fetch('https://((DOMAIN))/api/graphql-engine/v1/graphql', {
+    const response = await fetch('https://adam-jerusalem.nd.edu/api/graphql-engine/v1/graphql', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${jwt}`,
