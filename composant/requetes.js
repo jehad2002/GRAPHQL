@@ -57,22 +57,12 @@ export async function loadXP() {
         body: JSON.stringify({
           query: `
             query {
-              xpTotal: transaction_aggregate(
-                where: {
-                  type: { _eq: "xp" },
-                  _and: [
-                    { path: { _ilike: "/dakar/div-01%" } },
-                    { path: { _nlike: "%/dakar/div-01/piscine-js/%" } },
-                    { path: { _nlike: "%/dakar/div-01/piscine-js-2/%" } }
-                  ]
-                }
-              ) {
-                aggregate {
-                  sum {
-                    amount
-                  }
-                }
-              }
+           user{
+            xps{
+              path
+              amount
+            }
+            }
             }
 
           `,
