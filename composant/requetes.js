@@ -68,13 +68,22 @@ export async function loadXP() {
           `,
         }),
       });
-
       if (!response.ok) {
         throw new Error('Error loaded XP');
       }
-
+      
       const { data } = await response.json();
       console.log("--- data:", data);
+      // let arr = data.user[0].xps
+      let arr = data.user[0].xps;
+
+for (let i = 0; i < arr.length; i++) {
+  let xp = arr[i];
+  let path = xp.path;
+  let amount = xp.amount;
+  console.log(`XP Path: ${path}, Amount: ${amount}`);
+}
+
       const totalXpAmount = data.xpTotal.aggregate.sum.amount;
 
       const totalXpAmountMB = totalXpAmount >= 1000 ? totalXpAmount / 1000 : totalXpAmount;
@@ -108,7 +117,6 @@ export async function loadLevel() {
             query: `
               query {
                 maxLevelTransaction: transaction_aggregate(
-                  where: { type: { _eq: "level" }, path: { _ilike: "%/dakar/div-01%" } },
                   order_by: { amount: desc },
                   limit: 1
                 ) {
@@ -129,7 +137,7 @@ export async function loadLevel() {
         const maxLevelAmount = data.maxLevelTransaction.nodes[0]?.amount;
   
         if (maxLevelAmount !== undefined) {
-          levelCountElement.textContent = `Level: ${maxLevelAmount}`;
+          levelCountElement.textContent = `Max Level xp project: ${maxLevelAmount}`;
         }
       } catch (error) {
         // console.error('Error loading level:', error.message);
@@ -240,11 +248,6 @@ export async function loadXPAndDisplayChart() {
               xpTransactions: transaction(
                 where: {
                   type: { _eq: "xp" },
-                  _and: [
-                    { path: { _ilike: "/dakar/div-01%" } },
-                    { path: { _nlike: "%/dakar/div-01/piscine-js/%" } },
-                    { path: { _nlike: "%/dakar/div-01/piscine-js-2/%" } }
-                  ]
                 }
               ) {
                 type
