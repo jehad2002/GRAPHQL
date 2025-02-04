@@ -76,7 +76,7 @@ export function createHome() {
 
 <div class="vertical-section" style="display: flex; justify-content: space-between;">
   <div id="statistics1" class="statistics-section inline-bordered-section">
-    <h3>XP name peer projet</h3>
+    <h3>XP name per project</h3>
     <div id="chart1" class="chart-container">
       <svg class="chart"></svg>
     </div>

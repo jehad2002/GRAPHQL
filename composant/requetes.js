@@ -75,7 +75,6 @@ export async function loadXP() {
       
       const { data } = await response.json();
       console.log("--- data:", data);
-      // let arr = data.user[0].xps
       let arr = data.user[0].xps;
 
 for (let i = 0; i < arr.length; i++) {
